@@ -11,6 +11,13 @@
   "dependencies": {
     "@carbon/icons-react": "^11.40.0",
     "@carbon/react": "^1.56.0",
+    "@milkdown/core": "^7.3.6",
+    "@milkdown/ctx": "^7.3.6",
+    "@milkdown/preset-commonmark": "^7.3.6",
+    "@milkdown/prose": "^7.3.6",
+    "@milkdown/react": "^7.3.6",
+    "@milkdown/theme-nord": "^7.3.6",
+    "@milkdown/transformer": "^7.3.6",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
