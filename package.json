@@ -12,11 +12,14 @@
   "dependencies": {
     "@editorjs/editorjs": "^2.29.1",
     "@editorjs/header": "^2.8.1",
+    "@fluentui/react-components": "^9.54.0",
+    "@fluentui/react-icons": "^2.0.242",
     "@lexical/react": "^0.16.0",
     "@tauri-apps/api": "^1",
     "lexical": "^0.16.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.77.4"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",

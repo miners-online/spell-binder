@@ -4,6 +4,8 @@
  * The original file is licensed under the MIT license.
  */
 
+import { EditorThemeClasses } from "lexical";
+
 export default {
     code: 'editor-code',
     heading: {
@@ -38,4 +40,4 @@ export default {
       underline: 'editor-text-underline',
       underlineStrikethrough: 'editor-text-underlineStrikethrough',
     },
-  };
+  } as EditorThemeClasses;

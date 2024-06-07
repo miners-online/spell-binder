@@ -1,5 +1,10 @@
+import {
+  FluentProvider,
+  webLightTheme,
+} from "@fluentui/react-components";
+
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
-import {LexicalComposer} from '@lexical/react/LexicalComposer';
+import {InitialConfigType, LexicalComposer} from '@lexical/react/LexicalComposer';
 import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
@@ -9,13 +14,13 @@ import ExampleTheme from './ExampleTheme';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
 
-import "./App.css"
+import "./App.scss"
 
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
-const editorConfig = {
+const editorConfig: InitialConfigType = {
   namespace: 'React.js Demo',
   nodes: [],
   // Handling of errors during update
@@ -28,20 +33,18 @@ const editorConfig = {
 
 export default function App() {
   return (
-    <LexicalComposer initialConfig={editorConfig}>
-      <div className="editor-container">
-        <ToolbarPlugin />
-        <div className="editor-inner">
+    <FluentProvider theme={webLightTheme}>
+      <LexicalComposer initialConfig={editorConfig}>
+          <ToolbarPlugin />
           <RichTextPlugin
-            contentEditable={<ContentEditable className="editor-input" />}
+            contentEditable={<ContentEditable/>}
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
           <AutoFocusPlugin />
-          <TreeViewPlugin />
-        </div>
-      </div>
-    </LexicalComposer>
+          {/* <TreeViewPlugin /> */}
+      </LexicalComposer>
+    </FluentProvider>
   );
 }
