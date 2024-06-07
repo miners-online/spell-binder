@@ -1,21 +1,47 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/tauri";
-import "./App.css";
-import EditorComponent from "./components/EditorCompoenent";
+import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
+import {LexicalComposer} from '@lexical/react/LexicalComposer';
+import {ContentEditable} from '@lexical/react/LexicalContentEditable';
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
+import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+import ExampleTheme from './ExampleTheme';
+import ToolbarPlugin from './plugins/ToolbarPlugin';
+import TreeViewPlugin from './plugins/TreeViewPlugin';
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
+import "./App.css"
 
-  return (
-    <EditorComponent/>
-  );
+function Placeholder() {
+  return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
-export default App;
+const editorConfig = {
+  namespace: 'React.js Demo',
+  nodes: [],
+  // Handling of errors during update
+  onError(error: Error) {
+    throw error;
+  },
+  // The editor theme
+  theme: ExampleTheme,
+};
+
+export default function App() {
+  return (
+    <LexicalComposer initialConfig={editorConfig}>
+      <div className="editor-container">
+        <ToolbarPlugin />
+        <div className="editor-inner">
+          <RichTextPlugin
+            contentEditable={<ContentEditable className="editor-input" />}
+            placeholder={<Placeholder />}
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          <HistoryPlugin />
+          <AutoFocusPlugin />
+          <TreeViewPlugin />
+        </div>
+      </div>
+    </LexicalComposer>
+  );
+}
